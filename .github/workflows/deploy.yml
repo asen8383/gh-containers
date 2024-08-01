@@ -17,8 +17,9 @@ jobs:
     #   env:  # Vars for the Docker image, not the pipeline
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb # Use "mongodb+srv" for MongoDB cloud
-      MONGODB_CLUSTER_ADDRESS: mongodb # Name of the local container SERVICE for MongoDB
+      MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017 # Running on Ubuntu instead of into container
 
+      # MONGODB_CLUSTER_ADDRESS: mongodb # Name of the local container SERVICE for MongoDB
       # MONGODB_CLUSTER_ADDRESS: cluster0.lrvocu4.mongodb.net # MongoDB cloud
 
       # Used with the service container 
@@ -34,6 +35,8 @@ jobs:
       # anything:
       mongodb:
         image: mongo
+        ports:
+          - 27017:27017
         env:
           MONGO_INITDB_ROOT_USERNAME: root
           MONGO_INITDB_ROOT_PASSWORD: example
